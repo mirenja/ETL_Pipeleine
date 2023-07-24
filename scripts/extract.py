@@ -25,6 +25,7 @@ raw_path = f"{base_path}/data/raw/downloaded_at=2021-02-01/ppr-all.csv"
 def create_folder_if_not_exists(path):
     """
     Create a new folder if it doesn't exists
+    if in actual production pehaps set it exist_ok= false so as not to overwrite ??
     """
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
@@ -32,10 +33,11 @@ def create_folder_if_not_exists(path):
 def download_snapshot():
     """
     Download the new dataset from the source
+    verify=false means
     """
     create_folder_if_not_exists(source_path)
     with open(source_path, "wb") as source_ppr:
-        response = requests.get(source_url, verify=False)
+        response = requests.get(source_url, verify=False) 
         source_ppr.write(response.content)
 
 
